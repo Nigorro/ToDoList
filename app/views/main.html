@@ -1,0 +1,42 @@
+<!-- <div class="jumbotron">
+	<img src="http://sketchingwithhardware.files.wordpress.com/2014/04/grumpycat.png" alt="Grummy cat face"><br>
+</div> -->
+<div class="row" ng-controller='TodoController'>
+	<center><img style="width:400px;" src="http://sketchingwithhardware.files.wordpress.com/2014/04/grumpycat.png" alt="Grummy cat face"><br></center>
+	<div class="col-lg-12" style="margin-bottom:40px;">
+		<div ng-show="isError" class="alert alert-danger">
+				<strong>Ну вот опять!</strong>Ну напиши хоть что нибуть
+		    </div>
+		<form class="input-group" ng-submit='addToDo()'>
+			<input type="text" class="form-control" ng-model="todoText">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus"></span></button>
+			</span>
+		</form>
+	</div>
+	<div class="col-lg-12">
+		<center>
+			<button ng-click="tab = 1" type="button" class="btn btn-primary">Текущие</button>
+			<button ng-click="tab = 2" type="button" class="btn btn-danger">Удаленые</button>
+		</center>
+	</div>
+	<div class="col-lg-12">
+	<hr>
+		<ul ng-show='tab === 1' class="list-group">
+			<li class="list-group-item done-is-{{item.isDone}}" ng-repeat="item in todoList">
+				<input type="checkbox" ng-model="item.isDone" ng-click='doneTodo(item)'>
+				{{item.text}} 
+				<span ng-click="deleteTodo(item)" class="glyphicon glyphicon-remove"></span>
+			</li>
+		</ul>
+
+		<ul ng-show='tab === 2' class="list-group">
+			<li class="list-group-item done-is-{{item.isDone}}" ng-repeat="item in removeTodoList">
+				<input type="checkbox" ng-model="item.isDone">
+				{{item.text}} 
+				<span ng-click="restoreTodo(item)" class="glyphicon glyphicon-star"></span>
+			</li>
+		</ul>
+
+	</div>
+</div>
