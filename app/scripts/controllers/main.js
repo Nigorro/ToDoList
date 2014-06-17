@@ -1,15 +1,15 @@
 'use strict';
 
-
-function TodoController($scope){
+function TodoController($scope, $cookieStore){
 	$scope.tab = 1;
+
 	$scope.isError = false;
 
 	$scope.todoList = [
-		{text:'Помой кота', isDone:false},
-		{text:'Погуляй с котом', isDone:false},
-		{text:'Покорми кота', isDone:false},
-		{text:'Поиграй с котом', isDone:false}
+		{text:'Помой кота', isDone:false, rating: 5, voted: [{count: 4},{count: 4},{count: 3}]},
+		{text:'Погуляй с котом', isDone:false, rating: 1,  voted: [{count: 4},{count: 4},{count: 3}]},
+		{text:'Покорми кота', isDone:false, rating: 3,  voted: [{count: 4},{count: 4},{count: 3}]},
+		{text:'Поиграй с котом', isDone:false, rating: 1,  voted: [{count: 4},{count: 4},{count: 3}]}
 	];
 
 	$scope.removeTodoList = [
@@ -38,10 +38,15 @@ function TodoController($scope){
 		$scope.removeTodoList.splice(item,1);
 	}
 
+	$scope.doneTodo = function(item){
+		if(!item.isDone){
+			$scope.todoList.push(item);
+			$scope.todoList.splice(item,1);
+			console.log(item.$$hashKey);
+		}
+	}
+
 }
-
-
-
 
 
 // var app = angular.module('toDoListApp');

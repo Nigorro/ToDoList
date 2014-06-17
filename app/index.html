@@ -15,20 +15,37 @@
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 		<style type="text/css">
-			li .glyphicon{
-				float: right;
+			.glyphicon.active {
+				font-weight: 700;
+				color: #f52b12;
 			}
-			li .glyphicon:hover{
+			.glyphicon.hover {
+				font-weight: 700;
+				color: blue;
+			}
+			li .float{
+				float: right;
+				-webkit-transition: color .3s ease, font-size .3s ease;
+			}
+			li .float:hover{
 				color:rgb(233, 3, 3);
 				font-size: 20px;
-				-webkit-transition: color .3s ease, font-size .3s ease;
 				cursor: pointer;
 			}
-			li .glyphicon-star:hover {
+			li .glyphicon-repeat {
+				float: right;
+			}
+			li .glyphicon-repeat:hover {
 				color:rgb(0,255,0);
 				font-size: 20px;
-				-webkit-transition: color .3s ease, font-size .3s ease;
 				cursor: pointer;
+			}
+			li .glyphicon-remove {
+				margin-top: -35px;
+			}
+			.hovered {
+				color: green !important;
+				font-size: 16px;
 			}
 		</style>
 	</head>
@@ -81,6 +98,7 @@
 				<script src="scripts/app.js"></script>
 				<script src="scripts/controllers/main.js"></script>
 				<script src="scripts/controllers/about.js"></script>
+				<script src="scripts/directive/directive.js"></script>
 				<!-- endbuild -->
 </body>
 </html>

@@ -21,20 +21,24 @@
 		</center>
 	</div>
 	<div class="col-lg-12">
+	{{cookies}}
 	<hr>
 		<ul ng-show='tab === 1' class="list-group">
 			<li class="list-group-item done-is-{{item.isDone}}" ng-repeat="item in todoList">
 				<input type="checkbox" ng-model="item.isDone" ng-click='doneTodo(item)'>
 				{{item.text}} 
-				<span ng-click="deleteTodo(item)" class="glyphicon glyphicon-remove"></span>
+				<todo-rating ng-model="item.rating">
+					<todo-rating-average></todo-rating-average>
+				</todo-rating>  
+				<span ng-click="deleteTodo(item)" class="glyphicon glyphicon-remove float"></span>
 			</li>
 		</ul>
 
 		<ul ng-show='tab === 2' class="list-group">
-			<li class="list-group-item done-is-{{item.isDone}}" ng-repeat="item in removeTodoList">
-				<input type="checkbox" ng-model="item.isDone">
+			<li  class="list-group-item done-is-{{item.isDone}}" ng-repeat="item in removeTodoList">
+				<input  type="checkbox" ng-model="item.isDone">
 				{{item.text}} 
-				<span ng-click="restoreTodo(item)" class="glyphicon glyphicon-star"></span>
+				<span ng-click="restoreTodo(item)" class="glyphicon glyphicon-repeat"></span>
 			</li>
 		</ul>
 
