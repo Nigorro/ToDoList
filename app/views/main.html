@@ -5,7 +5,7 @@
 	<center><img style="width:400px;" src="http://sketchingwithhardware.files.wordpress.com/2014/04/grumpycat.png" alt="Grummy cat face"><br></center>
 	<div class="col-lg-12" style="margin-bottom:40px;">
 		<div ng-show="isError" class="alert alert-danger">
-				<strong>Ну вот опять!</strong>Ну напиши хоть что нибуть
+				<strong>Ну вот опять!</strong> Ну напиши хоть что нибуть
 		    </div>
 		<form class="input-group" ng-submit='addToDo()'>
 			<input type="text" class="form-control" ng-model="todoText">
@@ -27,9 +27,7 @@
 			<li class="list-group-item done-is-{{item.isDone}}" ng-repeat="item in todoList">
 				<input type="checkbox" ng-model="item.isDone" ng-click='doneTodo(item)'>
 				{{item.text}} 
-				<todo-rating ng-model="item.rating">
-					<todo-rating-average></todo-rating-average>
-				</todo-rating>  
+				<todo-rating ng-model="item.rating"></todo-rating>  
 				<span ng-click="deleteTodo(item)" class="glyphicon glyphicon-remove float"></span>
 			</li>
 		</ul>
@@ -37,7 +35,8 @@
 		<ul ng-show='tab === 2' class="list-group">
 			<li  class="list-group-item done-is-{{item.isDone}}" ng-repeat="item in removeTodoList">
 				<input  type="checkbox" ng-model="item.isDone">
-				{{item.text}} 
+				{{item.text}}
+				<todo-rating ng-model="item.rating"></todo-rating>
 				<span ng-click="restoreTodo(item)" class="glyphicon glyphicon-repeat"></span>
 			</li>
 		</ul>

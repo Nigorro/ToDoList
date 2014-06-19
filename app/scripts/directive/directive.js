@@ -24,9 +24,8 @@ app.directive('todoRating',['$cookieStore', function($cookieStore){
 				if(undefined !== $cookieStore.get(scope.$id)){
 					scope.voted = $cookieStore.get(scope.$id);
 				}
-				scope.voted.push(value);
-				$cookieStore.put(scope.$id, scope.voted);
-				console.log($cookieStore.get(scope.$id));
+				scope.todoList.slice(-scope.item.id-1)[0].rating = value;
+				$cookieStore.put('todoList',scope.todoList);
 				
 				ctrl.$setViewValue(value);
 			}
@@ -38,10 +37,10 @@ app.directive('todoRating',['$cookieStore', function($cookieStore){
 	}
 }]);
 
-app.directive('todoRatingAverage',['$cookieStore', function($cookieStore){
+app.directive('ratingAverage',['$cookieStore', function($cookieStore){
 	return {
 		restrict:'EA',
-		template: '<h1>средний рейтинг</h1>',
+		template: 'средний рейтинг',
 		replace: true,
 		require: 'ngModel',
 		scope: true,
