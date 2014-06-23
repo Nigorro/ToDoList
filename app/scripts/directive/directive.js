@@ -7,8 +7,12 @@ app.directive('todoRating',['$cookieStore', function($cookieStore){
 		templateUrl: 'views/selectBox.html',
 		replace: true,
 		require: 'ngModel',
-		scope: true,
-
+		controller:  function(){
+			this.printLog = function(message){
+				console.log('Print Message: ' + message);
+			}
+		},
+		
 
 		link:function(scope, element, attrs, ctrl){
 			scope.hovers = 0;
@@ -20,18 +24,26 @@ app.directive('todoRating',['$cookieStore', function($cookieStore){
 
 			scope.change = function(value) {
 				scope.value = value;
-				scope.rating = scope.value;
 				if(undefined !== $cookieStore.get(scope.$id)){
 					scope.voted = $cookieStore.get(scope.$id);
 				}
-				scope.todoList.slice(-scope.item.id-1)[0].rating = value;
-				$cookieStore.put('todoList',scope.todoList);
+				var findElment = find(scope.todoList, scope.$parent.item.id)
+				console.log(findElment);
+				scope.todoList.slice(findElment.voted.push(value));
+				$cookieStore.put('todoList', scope.todoList);
 				
 				ctrl.$setViewValue(value);
 			}
 
 			ctrl.$render = function() {
 				scope.value = ctrl.$viewValue;
+			}
+			var find = function(array, find){
+				for(var i = 0; i < array.length; i++){
+					if(array[i].id == find){
+						return array[i];
+					}
+				}
 			}
 		}
 	}
@@ -40,14 +52,16 @@ app.directive('todoRating',['$cookieStore', function($cookieStore){
 app.directive('ratingAverage',['$cookieStore', function($cookieStore){
 	return {
 		restrict:'EA',
-		template: 'средний рейтинг',
+		// template:'<span>Рейтинг: {{average}}</span>}',
 		replace: true,
-		require: 'ngModel',
-		scope: true,
-
-
-		link:function(scope, element, attrs, ctrl){
-			
+		transclude: true,
+		require: 'todoRating',
+		link:function(scope, element, attrs, todoRatingCtrl){
+			todoRatingCtrl.printLog('poo foo');
+			// scope.index = scope.$parent.$index;
+			// scope.array = scope.$parent.$parent.todoList[scope.index].voted;
+			// scope.arrayLen = scope.$parent.$parent.todoList[scope.index].voted.length
+		 // 	scope.average = scope.$parent.$parent.todoList.rating = parseInt(scope.array.reduce(function(pv, cv) { return pv + cv; }, 0)/scope.arrayLen);
 		}
 	}
 }]);
