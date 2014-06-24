@@ -44,7 +44,6 @@ function TodoController($scope, $cookieStore){
 		}else{
 			$scope.isError = true;
 		}
-		
 	};
 
 	$scope.deleteTodo = function(item){
@@ -52,8 +51,6 @@ function TodoController($scope, $cookieStore){
 		$cookieStore.put('removeTodoList', $scope.removeTodoList);
 		$scope.todoList.splice(item, 1);
 		$cookieStore.put('todoList', $scope.todoList);
-
-
 	}
 	$scope.restoreTodo = function(item){
 		$scope.todoList.unshift(item);
@@ -69,37 +66,4 @@ function TodoController($scope, $cookieStore){
 			console.log(item.$hashKey);
 		}
 	}
-
 }
-
-
-// var app = angular.module('toDoListApp');
-
-// app.controller('ToDoController', function(){
-// 	this.items = listItems; 
-// });
-// app.controller('ListAddCintroller', function(){
-// 	this.list = {};
-// 	this.addList = function(listItems) {
-// 		listItems.listText.push(listText);
-// 	}
-// });
-// this.listItems = [
-// 	{
-// 		listText: 'Помыть кота',
-// 		isDone: false,
-// 	},
-// 	{
-// 		listText: 'Купить коту поесть',
-// 		isDone: false,
-// 	},
-// 	{
-// 		listText: 'Поиграться с котом',
-// 		isDone: false,
-// 	},
-// 	{
-// 		listText: 'Сводить кота к парихмахеру',
-// 		isDone: false,
-// 	},
-// ];
-
