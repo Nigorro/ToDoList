@@ -7,13 +7,10 @@ app.directive('todoRating',['$cookieStore', function($cookieStore){
 		replace: true,
 		require: 'ngModel',
 		transclude: true,
-		controller:  function(){
-			this.average = function(item,scope){
-				this.arrayLen = item.voted.length;
-				this.total = parseInt(item.voted.reduce(function(pv, cv) { return pv + cv; }, 0)/this.arrayLen);
-				scope.item.rating = this.total;
-			}
-		},
+		scope: true,
+		controller: function($scope, $element, $attrs) {
+	    	this.list  = $scope.$parent.item;
+	    },
 		
 		link:function(scope, element, attrs, ctrl){
 			scope.hovers = 0;
@@ -24,17 +21,13 @@ app.directive('todoRating',['$cookieStore', function($cookieStore){
 			}
 
 			scope.change = function(value) {
-				if($cookieStore.get(scope.$id)!== undefined){
-					scope.voted = $cookieStore.get(scope.$id);
-				}
-				var findElment = find(scope.todoList, scope.item.id)
-				scope.todoList.slice(findElment.voted.push(value));
-				$cookieStore.put('todoList', scope.todoList);
+				scope.item.voted.push(value);
 			}
 
 			ctrl.$render = function() {
 				scope.value = ctrl.$viewValue;
 			}
+
 			var find = function(array, find){
 				for(var i = 0; i < array.length; i++){
 					if(array[i].id == find){
@@ -51,7 +44,9 @@ app.directive('ratingAverage',['$cookieStore', function($cookieStore){
 		restrict:'EAC',
 		require: '^todoRating',
 		link:function(scope, element, attrs, todoRatingCtrl){
-			todoRatingCtrl.average(scope.item, scope);
+			scope.arrayLen = todoRatingCtrl.list.voted.length;
+			scope.total = parseInt(todoRatingCtrl.list.voted.reduce(function(pv, cv) { return pv + cv; }, 0)/scope.arrayLen);
+			todoRatingCtrl.list.rating = scope.total ;
 		}
 	}
 }]);

@@ -104,3 +104,22 @@ hr {
 .footer{
   border-top: 1px solid #EBFF00;
 }
+.comment{
+  background-color: yellow;
+  padding: 15px 10px;
+  border: 1px solid #ccc;
+  margin-bottom:2px;
+}
+.form-group textarea {
+  float: left;
+  margin-top:10px;
+}
+textarea { resize: none; }
+.rt .rating {
+  float: right;
+  margin-top: -35px;
+  margin-right: 20px;
+  font-size: 40px;
+  font-weight: 600;
+}
+

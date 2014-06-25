@@ -2,12 +2,26 @@
 
 function TodoController($scope, $cookieStore){
 	$scope.tab = 1;
+	$scope.showComment =false;
 	$scope.isError = false;
 
+		
 	$scope.todoList = $cookieStore.get('todoList');
 	$scope.removeTodoList = $cookieStore.get('removeTodoList');
+	$scope.todoComments = $cookieStore.get('todoComments');
 	
-	//hash generator for id
+	$scope.$watch('todoComments', function() {
+			$cookieStore.put('todoComments', $scope.todoComments);
+           },true);
+	$scope.$watch('todoList', function() {
+            $cookieStore.put('todoList', $scope.todoList);
+           },true);
+	$scope.$watch('removeTodoList', function() {
+            $cookieStore.put('removeTodoList', $scope.todoList);
+           },true);
+
+
+	// //hash generator for id
 	var hash = function(s){
 		var n;
 		if (typeof(s) == 'number' && s === parseInt(s, 10)){
@@ -32,14 +46,21 @@ function TodoController($scope, $cookieStore){
 	// 	{id:'POqOmaed7P8DNEoE', text:'Погонять  с кота', isDone: true, rating: 1,  voted: [1,1,1,1,1,1,1,1,1,1]},
 	// ];
 
+	// $scope.todoComments = [
+	// 	{id:'KP1rjwumUoxBNQEYchyg', author:'Nigorro', text:'Великолепный ресурс! спасибо создателям!', rating: 5, voted: [4,5,2,1,4,5], date : new Date()},
+	// 	{id:'KtLsyt9yj4M6ECsujUmb', author:'Impy', text:'Великолепный ресурс! спасибо создателям!',  rating: 1,  voted: [1,2,2,2,2], date : new Date()},
+	// 	{id:'D0PpFw3dH3XgtvMaYBGp', author:'Black_Master', text:'Великолепный ресурс! спасибо создателям!', rating: 3,  voted: [1,4,5,2,1,2,4,5], date : new Date()},
+	// 	{id:'2NJ92Y47TdYcGI7Ag8Ns', author:'*666_Pro100_Vasia_999*', text:'Да фигня, крайзис лучше пацаны!', rating: 1,  voted: [1,1,1,1,1,1,1,1,1,1], date : new Date()},
+	// ];
+
 	// $scope.todoList = $cookieStore.put('todoList', $scope.todoList);
 	// $scope.removeTodoList = $cookieStore.put('removeTodoList', $scope.removeTodoList);
+	// $scope.todoComments = $cookieStore.put('todoComments', $scope.todoComments);
 
 	$scope.addToDo = function(){
 		if($scope.todoText.length > 0){
 			$scope.isError = false;
-			$scope.todoList.unshift({id:hash(16), text: $scope.todoText, isDone: false, voted: []});
-			$cookieStore.put('todoList', $scope.todoList);
+			$scope.todoList.unshift({id:hash(32), text: $scope.todoText, isDone: false, rating: 0,voted: []});
 			$scope.todoText='';
 		}else{
 			$scope.isError = true;
@@ -48,22 +69,25 @@ function TodoController($scope, $cookieStore){
 
 	$scope.deleteTodo = function(item){
 		$scope.removeTodoList.unshift(item);
-		$cookieStore.put('removeTodoList', $scope.removeTodoList);
 		$scope.todoList.splice(item, 1);
-		$cookieStore.put('todoList', $scope.todoList);
 	}
 	$scope.restoreTodo = function(item){
 		$scope.todoList.unshift(item);
-		$cookieStore.put('todoList', $scope.todoList);
 		$scope.removeTodoList.splice(item,1);
-		$cookieStore.put('removeTodoList', $scope.removeTodoList);
 	}
 
 	$scope.doneTodo = function(item){
 		if(!item.isDone){
 			$scope.todoList.push(item);
 			$scope.todoList.splice(item,1);
-			console.log(item.$hashKey);
 		}
 	}
+
+	$scope.addComment = function(item){
+		$scope.ratingg = 0;
+		$scope.todoComments.unshift({id:hash(32), author: $scope.commentAuthor, text: $scope.commentText, rating: 0, voted: [], date : new Date()});
+		$scope.commentAuthor = '';
+		$scope.commentText = '';
+	}
+
 }
