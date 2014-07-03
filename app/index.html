@@ -9,40 +9,31 @@
 		<!-- build:css styles/vendor.css -->
 		<!-- bower:css -->
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
 		<!-- endbower -->
 		<!-- endbuild -->
 		<!-- build:css(.tmp) styles/main.css -->
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 		<style type="text/css">
-			.glyphicon.active {
+			.fa.active {
 				font-weight: 700;
 				color: #f52b12;
 			}
-			.glyphicon.hover {
+			.fa.hover {
 				font-weight: 700;
 				color: blue;
 			}
 			li .float{
 				float: right;
 				-webkit-transition: color .3s ease, font-size .3s ease;
+				margin-top: -30px;
+				font-size: 20px;
 			}
 			li .float:hover{
 				color:rgb(233, 3, 3);
-				font-size: 20px;
+				font-size: 25px;
 				cursor: pointer;
-			}
-			li .glyphicon-repeat {
-				float: right;
-				margin-top: -35px;
-			}
-			li .glyphicon-repeat:hover {
-				color:rgb(0,255,0);
-				font-size: 20px;
-				cursor: pointer;
-			}
-			li .glyphicon-remove {
-				margin-top: -35px;
 			}
 			.hovered {
 				color: green !important;
@@ -60,7 +51,7 @@
 			<div ng-view=""></div>
 
 			<div class="footer">
-				<p style="color:#EBFF00;">from Nigorro with <span class="glyphicon glyphicon-heart"></p>
+				<p style="color:#EBFF00;">from Nigorro with <i class="fa fa-heart"></i></p>
 			</div>
 		</div>
 

@@ -17,7 +17,6 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
     // Project settings
     yeoman: {
       // configurable paths
@@ -190,7 +189,7 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
+        assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images']
       }
     },
 
@@ -339,6 +338,18 @@ module.exports = function (grunt) {
         singleRun: true
       }
     }
+
+    // cssmin: {
+    //   dist: {
+    //     files: {
+    //       // '<%= yeoman.dist %>/styles/main.css': [
+    //       //   '.tmp/styles/{,*/}*.css']
+    //       src: '<%= yeoman.dist %>/styles/main.css',
+    //       dest: '<%= yeoman.dist %>/styles/main.min.css'
+
+    //     }
+    //   }
+    // },
   });
 
 
