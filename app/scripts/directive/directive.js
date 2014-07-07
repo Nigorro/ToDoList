@@ -1,5 +1,5 @@
 'use strict';
-var app =  angular.module('toDoListApp', []);
+var app = angular.module('toDoListApp');
 app.directive('todoRating', [ function () {
   return {
     restrict: 'EA',
@@ -22,9 +22,10 @@ app.directive('todoRating', [ function () {
       scope.change = function (value) {
         scope.item.voted.push(value);
       };
-
       ctrl.$render = function () {
         scope.value = ctrl.$viewValue;
+        scope.value1 = 'foooo';
+        console.log(scope.value);
       };
     }
   };
@@ -32,12 +33,12 @@ app.directive('todoRating', [ function () {
 
 app.directive('ratingAverage', [function () {
   return {
+    require: 'todoRating',
     restrict: 'EAC',
-    require: '^todoRating',
-    link: function (scope, todoRatingCtrl) {
-      scope.arrayLen = todoRatingCtrl.list.voted.length;
-      scope.total = parseInt(todoRatingCtrl.list.voted.reduce(function (pv, cv) { return pv + cv; }, 0) / scope.arrayLen, 10);
-      todoRatingCtrl.list.rating = scope.total;
+    link: function ($scope) {
+      $scope.len = $scope.$parent.item.voted.length;
+      $scope.total = parseInt($scope.$parent.item.voted.reduce(function (pv, cv) { return pv + cv; }, 0) / $scope.len, 10);
+      $scope.$parent.item.rating = $scope.total;
     }
   };
 }]);

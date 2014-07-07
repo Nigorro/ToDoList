@@ -1,6 +1,6 @@
 'use strict';
 angular.module('toDoListApp')
-  .controller('TodoController', [function ($scope, $cookieStore) {
+  .controller('TodoController', ['$scope', '$cookieStore', function ($scope, $cookieStore) {
     $scope.tab = 1;
     $scope.showComment = false;
     $scope.isError = false;
@@ -16,8 +16,6 @@ angular.module('toDoListApp')
     $scope.$watch('removeTodoList', function () {
       $cookieStore.put('removeTodoList', $scope.todoList);
     }, true);
-
-
     // //hash generator for id
     var hash = function (s) {
       if (typeof s === 'number' && s === parseInt(s, 10)) {

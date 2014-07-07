@@ -1,5 +1,5 @@
 <div rating-average>
-	<i class="fa fa-star" ng-repeat="item in [1,2,3,4,5]"  ng-click="change(item)" ng-mouseenter="hovered(item)" ng-mouseleave="hovered(0)" ng-class="{
-	 hovered: item <= hovers, active: item <= value,}"></i>
-	 <span class='rating'>{{item.rating }}</span>	
+	<i class="fa fa-star" ng-model="value" ng-repeat="item in [1,2,3,4,5]"  ng-click="change(item)" ng-mouseenter="hovered(item)" ng-mouseleave="hovered(0)" ng-class="{
+	 hovered: item <= hovers, active: item <= value}"></i>
+	 <span class='rating'>{{item.rating}}</span>	
 </div>
