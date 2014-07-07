@@ -14,7 +14,7 @@ app.directive('todoRating', [ function () {
     link: function (scope, ctrl) {
       scope.hovers = 0;
       scope.voted = [];
-
+      scope.rating = scope.item.rating;
       scope.hovered = function (hovers) {
         scope.hovers = hovers;
       };
