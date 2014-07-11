@@ -1,22 +1,19 @@
-@fa-color:#f52b12;
-
-
 .fa.active {
   font-weight: 700;
-  color: @fa-color;
+  color: #f52b12;
 }
 .fa.hover {
   font-weight: 700;
   color: blue;
 }
-li .float{
+li .float {
   float: right;
-  -webkit-transition: color .3s ease, font-size .3s ease;
+  -webkit-transition: color 0.3s ease, font-size 0.3s ease;
   margin-top: -30px;
   font-size: 20px;
 }
-li .float:hover{
-  color:rgb(233, 3, 3);
+li .float:hover {
+  color: #e90303;
   font-size: 25px;
   cursor: pointer;
 }

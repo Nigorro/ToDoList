@@ -164,7 +164,13 @@ module.exports = function (grunt) {
         ]
       }
     },
-
+    less: {
+      target: {
+        files: {
+          "app/styles/less.css" : "app/styles/less/main.less"
+        }
+      }
+    },
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -271,8 +277,7 @@ module.exports = function (grunt) {
           dest: '.tmp/concat/scripts'
         }]
       }
-    },
-
+    }, 
     // Replace Google CDN references
     cdnify: {
       dist: {
@@ -389,6 +394,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'ngmin',
+    'less',
     'copy:dist',
     'cdnify',
     'cssmin',
