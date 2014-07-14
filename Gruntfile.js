@@ -48,6 +48,10 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      less: {
+        files: ['<%= yeoman.app %>/styles/less/{,*/}*.less'],
+        tasks: ["less"]
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -277,7 +281,7 @@ module.exports = function (grunt) {
           dest: '.tmp/concat/scripts'
         }]
       }
-    }, 
+    },
     // Replace Google CDN references
     cdnify: {
       dist: {
